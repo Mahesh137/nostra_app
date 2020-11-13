@@ -1,0 +1,17 @@
+.banner{
+    width: 150vw;
+    display: flex;
+    flex-flow: row;
+    overflow: auto;
+    position: absolute;
+    left: -25vw;
+}
+.bannercontainer{
+    margin-top:50px;
+    position:relative;
+    width:100%;
+    height:350px;
+    overflow: hidden;
+    background-image: url("/Assets/banenr_bg.jpg");
+    background-size: cover;
+}

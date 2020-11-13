@@ -1,0 +1,13 @@
+.banneritem{
+    flex:1;
+    margin:10px 20px;
+    padding:10px;
+    position: relative;
+    z-index: 3;
+    background:white;
+    border-radius: 10px;
+    box-shadow:0px 0px 10px grey;
+}
+.banneritem img{
+    height:300px;
+}

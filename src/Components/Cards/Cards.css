@@ -1,0 +1,30 @@
+.cardbox{
+    width:80%;
+    padding:10px;
+    margin:50px auto;
+    min-height:100px;
+    border-radius:10px;
+    box-shadow:0px 0px 10px black;
+
+}
+.cardbox>h5{
+    text-align: left;
+    color:blue;
+}
+.detailsbox img{
+    width: 15%;
+
+}
+.detailsbox{
+    display:flex;
+    background-color: #f5f5f5;
+    border-radius:10px;
+    padding:10px;
+    margin:50px auto;
+    justify-content: space-between;
+
+}
+.rupes{
+    display:flex;
+    justify-content: space-between;
+}
