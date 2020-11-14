@@ -1,2 +1,0 @@
-
-export { BannerItem } from "./BannerItem";
