@@ -1,13 +1,11 @@
 import commonApiList from "./baseUrls/common";
 // import { deepExtend } from "../"
 
-function createApiInstance(api, override, usethisinstead) {
+function createApiInstance(api) {
 	//overriding if there are any client specific apis
 	let url = commonApiList[api];
 
-	if (usethisinstead) url = usethisinstead;
-
-	const baseURL = "http://3.7.239.0/";
+	const baseURL = "http://localhost:3000/";
 
 	return {
 		url,

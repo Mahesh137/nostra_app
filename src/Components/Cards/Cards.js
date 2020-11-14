@@ -1,12 +1,50 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import "./Cards.scss"
 
 const Cards = (props) => {
 
-    console.log("call from cards ", props.cardlist);
-    if (props.cardlist.length)
+    let [data, setData] = useState([])
+
+    let [original, setorigin] = useState([...data]);
+
+    const [value, setValue] = useState(0);
+
+    let cardData = useSelector(
+        ({ cardDataReducer }) => cardDataReducer.data
+    )
+
+    useEffect(() => {
+
+        setData([...cardData])
+        setorigin([...cardData])
+
+    }, [cardData])
+
+    const findid = (sportsid) => {
+        console.log("sportsid", sportsid)
+        if (sportsid == 0) {
+            var results = [...original];
+        } else {
+            var results = original.filter(function (entry) { return entry.sports_id == sportsid; })
+            console.log(results)
+        }
+
+        console.log("results", results)
+        setData([...results])
+    }
+
+    useEffect(() => {
+        console.log("props.tabFilter", props.tabFilter)
+        setValue(props.tabFilter)
+        findid(props.tabFilter)
+    }, [props.tabFilter])
+
+
+    console.log("call from cards ", data);
+    if (data.length)
         return (
-            props.cardlist.map((a, i) => {
+            data.map((a, i) => {
                 return (
                     <div className="cardbox" key={i}>
                         <h5>Picks</h5>
@@ -18,10 +56,10 @@ const Cards = (props) => {
                             </div>
                             <img src={a.match_parties[1].party_img_url}></img>
                         </div>
-                        <div className="rupes">
+                        <div className="rupee">
                             <div>
                                 <img src="/Assets/ruppe-min.png" />
-                                <span>{a.prize_money}</span>
+                                <span className="dataAttr">{a.prize_money}</span>
                             </div>
                             <div>
                                 <img src="/Assets/timer-min.png" />

@@ -1,8 +1,8 @@
 import React from "react";
 
 
-const Wallet =()=>{
-    return <img src="/Assets/join a paid contest.png"></img>
+const Wallet = () => {
+    return <h1>Wallet Data</h1>
 }
 
 export default Wallet;

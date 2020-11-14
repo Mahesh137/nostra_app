@@ -1,14 +1,14 @@
-.card {
-    &box {
+.cardbox {
+    
         width: 80%;
         padding: 10px;
         margin: 50px auto;
         min-height: 100px;
         border-radius: 10px;
         box-shadow: 0px 0px 10px black;
-    }
+    
 
-    &box>h5 {
+    h5 {
         text-align: left;
         color: blue;
     }
@@ -30,8 +30,13 @@
     }
 }
 
+.dataAttr {
+    color: #20c997;
+    font-weight: bold;
+}
 
-.rupes {
+
+.rupee {
     display: flex;
     justify-content: space-between;
 }

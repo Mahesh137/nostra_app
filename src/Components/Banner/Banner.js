@@ -1,51 +1,48 @@
 import React, { useState, useEffect } from "react";
 import Carousel from 'react-bootstrap/Carousel';
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "./Banner.css";
 
 const Banner = (props) => {
 
-    let [state, updatestate] = useState([...props.bannerlist]);
-    let [currentindex, setIndex] = useState(0);
+    // let [state, updatestate] = useState([...props.bannerlist]);
 
-    useEffect(() => {
-        updatestate([...props.bannerlist]);
-    }, [props.bannerlist])
-
-    // setTimeout(() => {
-    //     let index = currentindex;
-    //     if (state.length) {
-    //         let currentstate = [...state];
-    //         let firstelem = currentstate.shift();
-    //         currentstate.push(firstelem);
-    //         updatestate(currentstate)
-    //     }
+    const data = useSelector(
+        ({ bannerDataReducer }) => bannerDataReducer.data
+    )
 
 
-    // }, 5000)
+    // useEffect(() => {
+    //     updatestate([...props.bannerlist]);
+    // }, [props.bannerlist])
 
-    console.log("this", props.bannerlist)
+    // console.log("this", props.bannerlist)
     return (
         <Carousel>
-            {state.map((a, i) => {
+            {data.map((a, i) => {
                 return (
                     (a.redirect) ?
-                        <Carousel.Item interval={5000} key={i}>
+                        <Carousel.Item style={{ height: '80%' }} interval={5000} key={i}>
                             <Link to={a.route || "/"}>
-                                <img
-                                    className="d-block w-100"
-                                    src={a.img_url}
-                                    alt="First slide"
-                                />
+                                <div className="parent d-flex justify-content-center">
+                                    <img
+                                        className="d-block"
+                                        src={a.img_url}
+                                        alt="First slide"
+                                    />
+                                </div>
                             </Link>
                         </Carousel.Item>
                         :
-                        <Carousel.Item interval={5000} key={i}>
-                            <img
-                                className="d-block w-100"
-                                src={a.img_url}
-                                alt="First slide"
-                            />
+                        <Carousel.Item style={{ height: '80%' }} interval={5000} key={i}>
+                            <div className="parent d-flex justify-content-center">
+                                <img
+                                    className="d-block"
+                                    src={a.img_url}
+                                    alt="First slide"
+                                />
+                            </div>
                         </Carousel.Item>
                 )
             })}

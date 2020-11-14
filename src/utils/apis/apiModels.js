@@ -1,41 +1,26 @@
-//schema object for the responses of all the apis used
 
-const loginApiModel = {
-	message: "",
-	token: "",
-	user: {
-		addresses: [],
-		apiKey: "",
-		createdOn: "",
-		email: "",
-		maskedEmail: "",
-		maskedMobile: "",
-		mobile: 0,
-		name: "",
-		password: "",
-		role: "",
-		socialMediaAccounts: [],
-		status: "",
-		updatedOn: "",
-		username: "",
-		__v: 0,
-		_id: "",
-	},
-};
 
-const signupApiModel = {
-	success: false,
-	message: "",
-};
-
-const userModel = [
+const dashboardDataModel = [
 	{
-		email: "",
-		firstName: "",
-		fullName: "",
-		lastName: "",
-		userName: "",
+		user_name: "",
+		banners: [],
+		sports: [],
+		challenges: []
 	},
 ];
 
-export { loginApiModel, signupApiModel, userModel };
+const walletModel = [
+	{
+		wallet_balance: "",
+		transactions: [],
+		withdrawls: []
+	},
+];
+
+const contestModel = [
+	{
+		contests: []
+	},
+];
+
+export { dashboardDataModel, walletModel, contestModel };

@@ -9,56 +9,66 @@ import Box from '@material-ui/core/Box';
 import Sporticon from "./Sporticon"
 import { Container } from '@material-ui/core';
 import Card from "../Cards/Cards"
+import { useSelector } from 'react-redux';
 
 const Scorllabletab = (props) => {
 
-  let [original, setorigin] = useState([...props.cardlist]);
-  let [data, setdata] = useState([...props.cardlist])
-  useEffect(() => {
-    setdata([...props.cardlist]);
-    setorigin([...props.cardlist]);
-  }, [props.cardlist])
+  const data = useSelector(
+    ({ tabDataReducer }) => tabDataReducer.data
+  )
 
   const [value, setValue] = useState(0);
+  const [valueIdx, setValueIdx] = useState(0);
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
+
+  const handleChange = (event, newValue, idx) => {
+    console.log("1", idx)
+    if (idx || (idx === 0)) setValueIdx(idx)
+    event.preventDefault()
+    event.stopPropagation()
+
+    console.log("handlechange", newValue)
+
+    if (newValue || (newValue === 0)) setValue(newValue);
+
   };
 
-  const findid = (event, sportsid) => {
-    if (sportsid == 0) {
-      var results = [...original];
-    } else {
-      var results = props.cardlist.filter(function (entry) { return entry.sports_id == sportsid; })
-      console.log(results)
-    }
-    setdata([...results])
+
+  const findid = (event, sportsid, idx) => {
+    console.log(idx)
+    if (idx || (idx === 0)) setValueIdx(idx)
+    event.preventDefault()
+    event.stopPropagation()
+
+    console.log("findid", sportsid)
+
+    if (sportsid || (sportsid === 0)) setValue(sportsid)
+
   }
-  useEffect(() => {
-    console.log(data)
-  }, [data])
+
 
   return (
     <Container maxWidth="xl" fixed>
-      <AppBar position="static" color="default">
+      <AppBar position="sticky" color="default">
         <Tabs
-          value={value}
-          onChange={handleChange}
+          value={valueIdx}
+          onClick={handleChange}
           indicatorColor="primary"
           textColor="primary"
           variant="scrollable"
           scrollButtons="auto"
           aria-label="scrollable auto tabs example"
         >
-          <Tab icon={<Sporticon imagesrc="/Assets/technology.png" />} onClick={(event) => findid(event, 0)} label="ALL" />
-          {props.tablist.map((a, i) => {
-            return <Tab key={i} icon={<Sporticon imagesrc={a.sports_img_url} />} onClick={(event) => findid(event, a.sports_id)} label={a.sports_name} />
+          <Tab icon={<Sporticon imagesrc="/Assets/technology.png" />} onClick={(event) => findid(event, 0, 0)} label="ALL" />
+          {data.map((a, i) => {
+            return <Tab key={i} icon={<Sporticon imagesrc={a.sports_img_url} />} onClick={(event) => findid(event, a.sports_id, i + 1)} label={a.sports_name} />
           })}
         </Tabs>
       </AppBar>
       {/* <TabPanel value={value} index={0}>
         </TabPanel>  */}
-      <Card cardlist={data}></Card>
+
+      <Card tabFilter={value}></Card>
 
     </Container>
   )

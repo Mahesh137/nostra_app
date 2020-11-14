@@ -1,1 +1,12 @@
+.carousel.slide {
+    margin-top: 40px;
+    height: 50% !important;
+    display: flex;
+    align-items: center;
+    background-image: url("/Assets/sticky bar.jpg");
+    background-size:cover;
+    background-repeat: repeat;
+}
+
+
 .carousel-indicators li { visibility: hidden; }
